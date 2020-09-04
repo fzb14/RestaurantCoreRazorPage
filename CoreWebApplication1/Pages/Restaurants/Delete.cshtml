@@ -1,4 +1,15 @@
 ﻿@page "{id:int}"
 @model CoreWebApplication1.Pages.Restaurants.DeleteModel
 @{
+    //Layout = null;
+    ViewData["title"] = "Delete";
 }
+
+
+    <h2>Delete</h2>
+    <div class="alert alert-danger">Are you sure to delete @Model.Restaurant.Name ?</div>
+    <form method="post">
+        <button type="submit" class="btn btn-danger">Yes</button>
+        <a asp-page="./List" class="btn btn-secondary">No</a>
+    </form>
+
