@@ -14,7 +14,7 @@ namespace CoreWebApplication1.Pages.Restaurants
     {
         private readonly IConfiguration config;
         private readonly IRestaurantData restaurantData;
-
+        [TempData]
         public string Message { get; set; }
         public IEnumerable<Restaurant> Restaurants { get; set; }
         [BindProperty(SupportsGet =true)]
@@ -28,7 +28,8 @@ namespace CoreWebApplication1.Pages.Restaurants
         public void OnGet(string SearchTerm)
         {
             //this.SearchTerm = SearchTerm;
-            Message = config["error"];
+            //Message = config["error"];
+
             Restaurants = restaurantData.GetList(SearchTerm);
         }
     }

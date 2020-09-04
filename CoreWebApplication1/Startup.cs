@@ -29,7 +29,7 @@ namespace CoreWebApplication1
             {
                 options.UseSqlServer(Configuration.GetConnectionString("RestaurantDB"));
             });
-            services.AddSingleton<IRestaurantData, FakeRestaurantData>();
+            services.AddScoped<IRestaurantData, SqlRestaurantData>();
             services.AddRazorPages();
         }
 

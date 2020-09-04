@@ -4,7 +4,11 @@
 }
 <h1>Restaurants</h1>
 
-<p>@Model.Message</p>
+
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+    <div class="alert alert-primary">@Model.Message</div>
+}
 <form method="get">
     <div class="form-group">
         <div class="input-group">
@@ -17,18 +21,21 @@
     <a asp-page="./edit" class="btn btn-dark">Add New</a>
 </div>
 <table class="table">
-    @foreach(var item in Model.Restaurants)
+    @foreach (var item in Model.Restaurants)
     {
-    <tr>
-        <td>@item.Id</td>
-        <td>@item.Name</td>
-        <td>@item.CType</td>
-        <td>
-            <a asp-page="./Detail" asp-route-id="@item.Id"><i class="glyphicon glyphicon-zoom-in"></i></a>
-        </td>
-        <td>
-            <a asp-page="./Edit" asp-route-id="@item.Id"><i class="glyphicon glyphicon-edit"></i></a>
-        </td>
-    </tr>
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>@item.CType</td>
+            <td>
+                <a asp-page="./Detail" asp-route-id="@item.Id"><i class="glyphicon glyphicon-zoom-in"></i></a>
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id"><i class="glyphicon glyphicon-edit"></i></a>
+            </td>
+            <td>
+                <a asp-page="./Delete" asp-route-id="@item.Id"><i class="glyphicon glyphicon-remove"></i></a>
+            </td>
+        </tr>
     }
 </table>
