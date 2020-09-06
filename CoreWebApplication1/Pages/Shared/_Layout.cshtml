@@ -25,6 +25,9 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Restaurants/List">Restaurants</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Restaurant2/Index">RestaurantB</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
                     </ul>
@@ -33,13 +36,15 @@
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" class="pb-5 mb-auto">
             @RenderBody()
         </main>
     </div>
 
     <footer class="border-top footer text-muted">
+        
         <div class="container">
+            <vc:restaurant-count></vc:restaurant-count>
             &copy; 2020 - CoreWebApplication1 - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>

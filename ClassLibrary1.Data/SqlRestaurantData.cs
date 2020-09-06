@@ -42,6 +42,11 @@ namespace ClassLibrary1.Data
             return res;
         }
 
+        public int GetCount()
+        {
+            return db.Restaurants.Count();
+        }
+
         public IEnumerable<Restaurant> GetList(string SearchTerm)
         {
             var res = db.Restaurants.Where(r => r.Name.Contains(SearchTerm) || string.IsNullOrEmpty(SearchTerm));

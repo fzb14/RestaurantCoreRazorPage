@@ -54,5 +54,10 @@ namespace ClassLibrary1.Data
             }
             return rest;
         }
+
+        public int GetCount()
+        {
+            return Restaurants.Count;
+        }
     }
 }

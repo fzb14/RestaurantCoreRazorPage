@@ -12,5 +12,6 @@ namespace ClassLibrary1.Data
         public Restaurant update(Restaurant restaurant);
         public Restaurant Add(Restaurant restaurant);
         public Restaurant Delete(int id);
+        public int GetCount();
     }
 }
