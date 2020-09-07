@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ClassLibrary1.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -60,6 +61,13 @@ namespace CoreWebApplication1
                 endpoints.MapRazorPages();
                 endpoints.MapControllers();
             });
+
+            app.Use(WrongPlaceMiddleWare);
+        }
+
+        private RequestDelegate WrongPlaceMiddleWare(RequestDelegate arg)
+        {
+            return async cxt => await cxt.Response.WriteAsync("The page is not found!");
         }
     }
 }
