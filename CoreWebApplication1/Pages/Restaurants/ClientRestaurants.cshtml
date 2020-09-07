@@ -1,0 +1,42 @@
+﻿@page
+@model CoreWebApplication1.Pages.Restaurants.ClientRestaurantsModel
+@{
+}
+<table class="table" id="restaurants">
+
+</table>
+@section Scripts{
+    <link href="~/lib/DataTables/datatables.css" rel="stylesheet" />
+    <script src="~/lib/DataTables/datatables.js"></script>
+<script>
+
+
+    $(function () {
+        var cuisines;
+        $.get({ url:"/api/Restaurants/GetCuisines", success: function (data) { cuisines = data; } });
+        console.dir(cuisines);
+        $.ajax({
+            url: '/api/restaurants',
+            type: 'get',
+            dataType:'json',
+            success: function (response) {
+                console.log(Array.isArray(response));
+                console.log("type of response:", typeof (response));
+                //var resStr = JSON.stringify(response);
+                //$('main').html(resStr);
+                $('#restaurants').dataTable({
+                    data: response,
+                    columns: [
+                        { "data": "id" },
+                        { "data": "name" },
+                        { "data": "cType", "render": function (data) { return cuisines[data]; } }
+                    ]
+                });
+            },
+            fail: function () { alert("fail");}
+        });
+        //document.write("Hello World");
+        //$('main').html('Hello world');
+    });
+</script>
+ }
