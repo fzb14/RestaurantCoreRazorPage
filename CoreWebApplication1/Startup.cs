@@ -65,9 +65,15 @@ namespace CoreWebApplication1
             app.Use(WrongPlaceMiddleWare);
         }
 
-        private RequestDelegate WrongPlaceMiddleWare(RequestDelegate arg)
+        private RequestDelegate WrongPlaceMiddleWare(RequestDelegate next)
         {
-            return async cxt => await cxt.Response.WriteAsync("The page is not found!");
+            
+            return async cxt => {
+                if (cxt.Request.Path.StartsWithSegments("/hello"))
+                { await cxt.Response.WriteAsync("hello world"); }
+                else
+                    await next(cxt); //cxt.Response.WriteAsync("The page is not found!"); 
+            };
         }
     }
 }
